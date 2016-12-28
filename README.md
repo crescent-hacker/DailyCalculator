@@ -1,9 +1,9 @@
 # DailyCalculator
 Test task
 ## Data Storage Structure
-Date
-|--User
-   |--Session
-   |--Group
-      |--Event
+Date<br>
+|--User<br>
+   |--Session<br>
+   |--Group<br>
+      |--Event<br>
 
