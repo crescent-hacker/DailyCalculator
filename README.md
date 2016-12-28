@@ -3,7 +3,7 @@ Test task
 ## Data Storage Structure
 Date<br>
 |--User<br>
-   |--Session<br>
-   |--Group<br>
-      |--Event<br>
+&nbsp;&nbsp;|--Session<br>
+&nbsp;&nbsp;|--Group<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|--Event<br>
 
