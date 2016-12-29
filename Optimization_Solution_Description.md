@@ -1,15 +1,16 @@
-Optimization solution:
+#Optimization solution:
 
-
-1. When reading file (pseudo code):
-
+##1. When reading file (pseudo code):
+sh'''
 	function readFile(String path):
 		int bufferSize = 1024*1024*100; //100MB
 		FileChannel fileChannel = new RandomAccessFile(new File(path), "r").getChannel();
     	ByteBuffer readBuffer = ByteBuffer.allocate(bufferSize);
     	readLinesOfFile(readBuffer,fileChannel,bufferSize);
+'''
+##2. Define readLine function for reading line in a buffer (pseudo code):
+sh'''
 
-2. Define readLine function for reading line in a buffer (pseudo code):
 	public class StatModel{
 		......
     	private Map<Long,PeriodData> periodDataMap;
@@ -18,9 +19,9 @@ Optimization solution:
     	}
     	......
 	}
+'''
 
-	-------------------------------------------------------------------------
-
+sh'''
 	function readLinesOfFile(readBuffer,fileChannel,bufferSize,statModel):
 		int lineBreak = 10; //the ascii of line break
 		List<String> lines = new ArrayList<String>(); // store lines in a buffer
@@ -77,11 +78,12 @@ Optimization solution:
 
 			//launch multi-thread analyzer to analyse; block the reading thread until all sub-thread done
 			launchAnalysis(lines,statModel);
+'''
 
 
+##3. multi-thread analysis (pseudo code):
 
-3. multi-thread analysis (pseudo code):
-
+sh'''
 	function launchAnalysis(lines,statModel):
 		final int THREAD_LIMIT = 4;
 		CountDownLatch singleTaskCount = new CountDownLatch(1);
@@ -110,10 +112,10 @@ Optimization solution:
         	}finally{
         		executor.shutdown();
         	}
+'''
 
 
-	---------------------------------------------------------------------
-
+sh'''
 	public class DataConvertor implements Runnable{
 		private List<String> lines;
 		private CountDownLatch currentTaskCount;
@@ -147,5 +149,5 @@ Optimization solution:
 			convert line into record obj
 
 	}
-
+'''
 
